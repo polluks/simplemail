@@ -104,6 +104,7 @@
 
 #ifdef __MORPHOS__
 extern Object *aboutboxWin;
+extern char *credits;
 #endif
 
 enum
@@ -305,6 +306,8 @@ void display_about(void)
 #endif
 
 #ifdef __MORPHOS__
+	strncpy(credits+214, buf, strlen(buf));
+	strcpy(credits+214+sizeof buf, ssl);
 	if (aboutboxWin)
 		set(aboutboxWin, MUIA_Window_Open, TRUE);
 	else

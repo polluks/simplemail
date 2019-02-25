@@ -132,6 +132,7 @@ Object *App;
 #ifdef __MORPHOS__
 #include <mui/Aboutbox_mcc.h>
 Object *aboutboxWin;
+char *credits;
 #endif
 
 /* New since MUI V20 */
@@ -269,13 +270,15 @@ static void app_change_iconified_state(void)
  */
 static int app_init(void)
 {
+	char copyright[128];
 	struct DiskObject *HideIcon = appicon_get_hide_icon();
 	SM_ENTER;
+	sprintf(copyright,"2000-%s by Sebastian Bauer & Hynek Schlawack",SIMPLEMAIL_DATE+6);
 
 	App = ApplicationObject,
 		MUIA_Application_Title,			"SimpleMail",
 		MUIA_Application_Version,		VERSTAG,
-		MUIA_Application_Copyright,		"2000-2018 by Sebastian Bauer & Hynek Schlawack",
+		MUIA_Application_Copyright,		copyright,
 		MUIA_Application_Author,		"Sebastian Bauer & Hynek Schlawack",
 		MUIA_Application_Description,	"A mailer.",
 		MUIA_Application_Base,			"SIMPLEMAIL",
@@ -288,8 +291,7 @@ static int app_init(void)
 		HideIcon ? MUIA_Application_DiskObject : TAG_IGNORE, HideIcon,
 #ifdef __MORPHOS__
 		SubWindow, aboutboxWin = AboutboxObject,
-			MUIA_Aboutbox_Credits, "\n"
-				"\n"
+			MUIA_Aboutbox_Credits, credits=
 				"\033b%p\033n\n"
 				"\tHynek Schlawack\n"
 				"\tSebastian Bauer\n"
@@ -303,7 +305,10 @@ static int app_init(void)
 				"\033b%W\033n\n"
 				"\tsimplemail.sourceforge.net\n"
 				"\n"
-				"Released under the terms of the GNU Public License",
+				"Released under the terms of the GNU Public License.\n"
+			 /* "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" */
+				"                                                                                                                              \n"
+				"                                                                                                                               ",
 			End,
 #endif
 	End;
