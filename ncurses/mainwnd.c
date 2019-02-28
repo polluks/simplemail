@@ -175,7 +175,10 @@ void main_set_folder_mails(struct folder *folder)
 	while ((mi = folder_next_mail(folder, &handle)))
 	{
 		const char *from = mail_info_get_from(mi);
-		mvwprintw(messagelist_wnd, row++, 0, from?from:"Unknown");
+		mystrlcpy(from_buf, from?from:"Unknown", sizeof(from_buf));
+		mvwprintw(messagelist_wnd, row, 0, from);
+		mvwprintw(messagelist_wnd, row, 31, mi->subject);
+		row++;
 	}
 	wclrtobot(messagelist_wnd);
 	wrefresh(messagelist_wnd);
