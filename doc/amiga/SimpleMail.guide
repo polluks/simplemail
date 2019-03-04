@@ -5,7 +5,7 @@
 
 @NODE "MAIN" "Welcome to SimpleMail!"
 
-                         SimpleMail 0.44 (public BETA)
+                         SimpleMail 0.45 (public BETA)
                           (not completely finished yet)
 
                (C) 2000-2017 by Hynek Schlawack & Sebastian Bauer
@@ -105,11 +105,11 @@ Software
  - @{" MUI " LINK MUI} 3.8 or higher
  - 3rd party MUI custom classes:
 
- - @{"BetterString" SYSTEM "OpenURL http://aminet.net/dev/mui/MCC_BetterString-11.15.lha"}   - http://aminet.net/dev/mui/MCC_BetterString-11.15.lha
+ - @{"BetterString" SYSTEM "OpenURL http://aminet.net/search?query=MCC_BetterString-"}   - http://aminet.net/dev/mui/MCC_BetterString-11.33.lha
  - @{"NList" SYSTEM "OpenURL http://sourceforge.net/projects/nlist-classes/"}          - http://sourceforge.net/projects/nlist-classes/
  - @{"NListtree" SYSTEM "OpenURL http://sourceforge.net/projects/nlist-classes/"}      - http://sourceforge.net/projects/nlist-classes/
  - @{"PopPlaceHolder" SYSTEM "OpenURL http://aminet.net/dev/mui/MCC_Popph.lha"} - http://aminet.net/dev/mui/MCC_Popph.lha
- - @{"TextEditor" SYSTEM "OpenURL http://aminet.net/dev/mui/MCC_TextEditor-15.27.lha"}     - http://aminet.net/dev/mui/MCC_TextEditor-15.27.lha
+ - @{"TextEditor" SYSTEM "OpenURL http://aminet.net/search?query=MCC_TextEditor-"}     - http://aminet.net/dev/mui/MCC_TextEditor-15.51.lha
 
  - (optional) OpenURL    - http://aminet.net/search?query=openurl
  - (optional) PGP 2.6.x  - @{" http://aminet.net/util/crypt/PGPAmi26ui.lha " system "OpenURL http://aminet.net/util/crypt/PGPAmi26ui.lha"}
