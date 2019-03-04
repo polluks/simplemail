@@ -80,6 +80,38 @@ static void main_folder_prev(void)
 
 /*****************************************************************************/
 
+static void main_next_mail(void)
+{
+	if (!main_active_folder)
+	{
+		return;
+	}
+
+	if (messagelist_active != folder_number_of_mails(main_active_folder))
+	{
+		messagelist_active++;
+		main_set_folder_mails(main_active_folder);
+	}
+}
+
+/*****************************************************************************/
+
+static void main_prev_mail(void)
+{
+	if (!main_active_folder)
+	{
+		return;
+	}
+
+	if (messagelist_active)
+	{
+		messagelist_active--;
+		main_set_folder_mails(main_active_folder);
+	}
+}
+
+/*****************************************************************************/
+
 int main_window_open(void)
 {
 	int w, h;
@@ -171,13 +203,58 @@ void main_set_folder_mails(struct folder *folder)
 	struct mail_info *mi;
 	int row = 0;
 
+	int from_width = 0;
+	int subject_width = 0;
+
+	char from_buf[128];
+
+	getmaxyx(messagelist_wnd, h, w);
+
+	SM_DEBUGF(20, ("%d %d", w, h));
+
+	/* Determine dimensions */
+	while ((mi = folder_next_mail(folder, &handle)))
+	{
+		int l;
+
+		const char *from = mail_info_get_from(mi);
+		const char *subject = mi->subject;
+
+		if (!from) from = "Unknown";
+
+		l = strlen(from);
+		if (l > from_width)
+		{
+			from_width = l;
+		}
+
+		l = mystrlen(subject);
+		if (l > subject_width)
+		{
+			subject_width = l;
+		}
+	}
+
+	if (from_width >= sizeof(from_buf))
+	{
+		from_width = sizeof(from_buf) - 1;
+	}
+
+	/* Draw */
+	handle = NULL;
 	wmove(messagelist_wnd, 0, 0);
 	while ((mi = folder_next_mail(folder, &handle)))
 	{
 		const char *from = mail_info_get_from(mi);
 		mystrlcpy(from_buf, from?from:"Unknown", sizeof(from_buf));
-		mvwprintw(messagelist_wnd, row, 0, from);
-		mvwprintw(messagelist_wnd, row, 31, mi->subject);
+		char *first = " ";
+		if (row == messagelist_active)
+		{
+			first = "*";
+		}
+		mvwprintw(messagelist_wnd, row, 0, first);
+		mvwprintw(messagelist_wnd, row, 1, from);
+		mvwprintw(messagelist_wnd, row, 1 + from_width + 1, mi->subject);
 		row++;
 	}
 	wclrtobot(messagelist_wnd);
