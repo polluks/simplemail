@@ -270,15 +270,13 @@ static void app_change_iconified_state(void)
  */
 static int app_init(void)
 {
-	char copyright[128];
 	struct DiskObject *HideIcon = appicon_get_hide_icon();
 	SM_ENTER;
-	sprintf(copyright,"2000-%s by Sebastian Bauer & Hynek Schlawack",SIMPLEMAIL_DATE+6);
 
 	App = ApplicationObject,
 		MUIA_Application_Title,			"SimpleMail",
 		MUIA_Application_Version,		VERSTAG,
-		MUIA_Application_Copyright,		copyright,
+		MUIA_Application_Copyright,		"2000-" SIMPLEMAIL_YEAR " by Sebastian Bauer & Hynek Schlawack",
 		MUIA_Application_Author,		"Sebastian Bauer & Hynek Schlawack",
 		MUIA_Application_Description,	"A mailer.",
 		MUIA_Application_Base,			"SIMPLEMAIL",

@@ -315,8 +315,8 @@ void display_about(void)
 	MUI_Request(App, NULL, 0,
 		_("SimpleMail - About"),
 		_("*Ok"),
-		"SimpleMail version %ld.%ld (%s)\n\n%s 2000-%s\nHynek Schlawack %s Sebastian Bauer\n%s.%s\n%s",
-		VERSION,REVISION,SIMPLEMAIL_DATE,_("Copyright (c)"),SIMPLEMAIL_DATE+6,_("and"),_("Released under the terms of the GNU Public License"),buf,ssl);
+		"SimpleMail version %ld.%ld (%s)\n\n%s 2000-" SIMPLEMAIL_YEAR "\nHynek Schlawack %s Sebastian Bauer\n%s.%s\n%s",
+		VERSION,REVISION,SIMPLEMAIL_DATE,_("Copyright (c)"),_("and"),_("Released under the terms of the GNU Public License"),buf,ssl);
 }
 
 /**
